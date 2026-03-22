@@ -3,107 +3,298 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ALXZN STORE - Venta de Cuentas FF</title>
+    <title>ALXZN FF STORE - Oficial</title>
     <style>
         :root {
-            --red: #ff0000;
-            --dark: #0d0d0d;
-            --card: #1a1a1a;
+            --cyan: #00ffff;
+            --fuchsia: #ff00ff;
+            --dark: #020617;
+            --card-bg: #0f172a;
+            --text: #e2e8f0;
         }
-        body { 
-            background-color: var(--dark); 
-            color: white; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            margin: 0; 
-            text-align: center; 
+
+        body {
+            background-color: var(--dark);
+            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding-bottom: 80px; /* Espacio para el chat */
         }
-        header { 
-            background: linear-gradient(180deg, #ff0000 0%, #660000 100%); 
-            padding: 30px; 
-            font-size: 28px; 
-            font-weight: bold; 
-            border-bottom: 4px solid white;
+
+        /* Degradado de fondo neón (puntos de luz) */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: 
+                radial-gradient(circle at 15% 20%, rgba(0, 255, 255, 0.1) 0%, transparent 40%),
+                radial-gradient(circle at 85% 80%, rgba(255, 0, 255, 0.1) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        header {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0;
             text-transform: uppercase;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, var(--cyan), var(--fuchsia));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5);
         }
-        .container { 
-            padding: 20px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        .card { 
-            background: var(--card); 
-            border: 2px solid var(--red); 
-            border-radius: 20px; 
-            margin: 20px; 
-            padding: 20px; 
-            width: 90%; 
-            max-width: 400px; 
-            box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+
+        /* Estilo de Tarjeta (Card) */
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid rgba(0, 255, 255, 0.2);
+            border-radius: 20px;
+            padding: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            transition: transform 0.2s, box-shadow 0.2s;
         }
-        .card img { 
-            width: 100%; 
-            border-radius: 10px; 
-            border: 2px solid #333; 
-            margin-bottom: 15px;
-            display: block;
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 255, 255, 0.15);
         }
-        .price { 
-            font-size: 26px; 
-            color: #00ff00; 
-            margin: 15px 0; 
-            font-weight: bold; 
-        }
-        .btn { 
-            display: block; 
-            padding: 15px; 
-            margin: 10px 0; 
-            text-decoration: none; 
-            border-radius: 12px; 
-            font-weight: bold; 
+
+        .card h3 {
             font-size: 18px;
-            transition: 0.2s;
+            color: white;
+            margin-top: 0;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 10px;
         }
-        .btn-wa { background-color: #25d366; color: white; }
-        .btn-pp { background-color: #0070ba; color: white; }
-        .btn:active { transform: scale(0.95); }
-        footer { 
-            padding: 30px; 
-            font-size: 14px; 
-            color: #777; 
-            border-top: 1px solid #222;
+
+        .card img {
+            width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
         }
+
+        .price {
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--cyan);
+            margin-bottom: 15px;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+        }
+
+        /* Estilo de Botón Neón (Gamer) */
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            padding: 14px;
+            margin: 8px 0;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: 0.3s;
+            box-sizing: border-box;
+        }
+
+        /* Efecto de borde brillante Neón */
+        .btn-neon-cyan {
+            background: linear-gradient(135deg, rgba(0,255,255,0.1), rgba(0,255,255,0.02));
+            color: var(--cyan);
+            border-color: rgba(0, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.1);
+        }
+
+        .btn-neon-cyan:hover {
+            background: rgba(0, 255, 255, 0.1);
+            border-color: var(--cyan);
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+        }
+
+        .btn-neon-fuchsia {
+            background: linear-gradient(135deg, rgba(255,0,255,0.1), rgba(255,0,255,0.02));
+            color: var(--fuchsia);
+            border-color: rgba(255, 0, 255, 0.5);
+            box-shadow: 0 0 15px rgba(255, 0, 255, 0.1);
+        }
+
+        .btn-neon-fuchsia:hover {
+            background: rgba(255, 0, 255, 0.1);
+            border-color: var(--fuchsia);
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+
+        .pix-key-display {
+            font-family: monospace;
+            background: rgba(0,0,0,0.3);
+            padding: 8px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            display: block;
+            color: #888;
+            font-size: 14px;
+        }
+
+        /* --- BOTÓN DE CHAT FLOTANTE (IGUAL AL DE LA CAPTURA) --- */
+        .floating-chat-wa {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 999;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-bubble-label {
+            background-color: #ff3366; /* Rosa de notificación */
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateX(10px);
+            transition: 0.3s;
+        }
+
+        .floating-chat-wa:hover .chat-bubble-label {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .chat-icon-circle {
+            width: 60px;
+            height: 60px;
+            background-color: #25d366; /* Verde WhatsApp */
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            transition: 0.3s;
+            border: 2px solid white;
+        }
+
+        .floating-chat-wa:hover .chat-icon-circle {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        /* SVG del icono de chat de WhatsApp */
+        .chat-icon-circle svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+
+        footer {
+            margin-top: auto;
+            padding: 20px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            text-align: center;
+            width: 100%;
+        }
+
     </style>
 </head>
 <body>
 
-<header>🔥 ALXZN STORE 🔥</header>
+<header>
+    <h1>Alxzn Store</h1>
+</header>
 
 <div class="container">
 
     <div class="card">
         <h3>CUENTA NIVEL ALTO #1</h3>
         <img src="fotech.jpg.JPG" alt="Cuenta FF 1">
-        <div class="price">$15.00 USD</div>
-        <a href="https://wa.me/5547997096706?text=Hola%20Alxzn,%20me%20interesa%20la%20Cuenta%201" class="btn btn-wa">WHATSAPP VENTAS</a>
-        <a href="https://www.paypal.com/paypalme/alejandropenalopez" class="btn btn-pp">PAGAR CON PAYPAL</a>
+        <div class="price">R$ 75,00 / $15 USD</div>
+        
+        <span class="pix-key-display">PIX: 09075658915</span>
+        <button onclick="copyPix('09075658915')" class="btn btn-neon-cyan">
+            📋 COPIAR LLAVE PIX
+        </button>
+        
+        <a href="https://www.paypal.com/paypalme/alejandropenalopez" class="btn btn-neon-cyan">
+            🔵 PAGAR POR PAYPAL
+        </a>
+        
+        <a href="https://wa.me/5547997096706?text=Aquí%20tienes%20el%20COMPROBANTE%20de%20la%20Cuenta%201:" class="btn btn-neon-fuchsia">
+            📸 ENVIAR COMPROBANTE
+        </a>
     </div>
 
     <div class="card">
         <h3>CUENTA EXCLUSIVA #2</h3>
         <img src="foto2.jpg.JPG" alt="Cuenta FF 2">
-        <div class="price">$30.00 USD</div>
-        <a href="https://wa.me/5547997096706?text=Hola%20Alxzn,%20me%20interesa%20la%20Cuenta%202" class="btn btn-wa">WHATSAPP VENTAS</a>
-        <a href="https://www.paypal.com/paypalme/alejandropenalopez" class="btn btn-pp">PAGAR CON PAYPAL</a>
+        <div class="price">R$ 150,00 / $30 USD</div>
+        
+        <span class="pix-key-display">PIX: 09075658915</span>
+        <button onclick="copyPix('09075658915')" class="btn btn-neon-cyan">
+            📋 COPIAR LLAVE PIX
+        </button>
+        
+        <a href="https://www.paypal.com/paypalme/alejandropenalopez" class="btn btn-neon-cyan">
+            🔵 PAGAR POR PAYPAL
+        </a>
+        
+        <a href="https://wa.me/5547997096706?text=Aquí%20tienes%20el%20COMPROBANTE%20de%20la%20Cuenta%202:" class="btn btn-neon-fuchsia">
+            📸 ENVIAR COMPROBANTE
+        </a>
     </div>
 
 </div>
 
 <footer>
-    📍 Balneário Camboriú, SC <br>
-    Ventas 100% Seguras <br>
-    &copy; 2026 Alxzn Store
+    Balneário Camboriú, SC <br>
+    &copy; 2026 Alxzn Store - Vendas Seguras
 </footer>
+
+<a href="https://wa.me/5547997096706?text=Hola%20Alxzn,%20tengo%20una%20pregunta:" class="floating-chat-wa" target="_blank">
+    <div class="chat-bubble-label">¡Dúvidas?</div>
+    <div class="chat-icon-circle">
+        <svg viewBox="0 0 448 512"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-5.5-2.8-23.2-8.5-44.2-27.1-16.4-14.6-27.4-32.6-30.6-37.9-3.2-5.5-.3-8.5 2.5-11.2 2.5-2.6 5.5-6.9 8.3-10.3 2.8-3.7 3.7-6.3 5.5-10.5 1.9-4.2.9-7.9-.5-10.6-1.4-2.8-12.5-30.1-17.1-41.1-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
+    </div>
+</a>
+
+<script>
+    function copyPix(key) {
+        navigator.clipboard.writeText(key).then(() => {
+            alert("✅ ¡Llave PIX copiada! Pégala en tu app de banco.");
+        });
+    }
+</script>
 
 </body>
 </html>
